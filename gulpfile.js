@@ -1,10 +1,10 @@
 'use strict';
 
-const gulp        = require('gulp');
+const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
-const sass        = require('gulp-sass');
-const del         = require('del');
-const plumber     = require('gulp-plumber');
+const sass = require('gulp-sass');
+const del = require('del');
+const plumber = require('gulp-plumber');
 const autoprefixer = require('gulp-autoprefixer');
 
 // const webpackStream = require('webpack-stream');
@@ -12,55 +12,53 @@ const autoprefixer = require('gulp-autoprefixer');
 // const webpackConfig = require('webpack.config');
 // const sftp        = require('gulp-sftp');
 
-gulp.task('delHtml',function() {
-  del(['html/*.html']);
+gulp.task('delHtml', function() {
+    del(['site/*.html']);
 });
-gulp.task('delJs',function() {
-  del(['html/js/*.js']);
+gulp.task('delJs', function() {
+    del(['site/js/*.js']);
 });
-gulp.task('delSass',function() {
-  del(['html/css/style.css']);
-});
-
-gulp.task('copyHtml',function() {
-  return gulp.src(['assets/**/*.html'])
-  .pipe(plumber())
-  .pipe(gulp.dest('html/'))
-  // return gulp.src(['html/*.html'])
-  // .pipe(gulp.dest('html/'))
-  .pipe(browserSync.stream());
+gulp.task('delSass', function() {
+    del(['site/css/style.css']);
 });
 
-gulp.task('copyJs',function() {
-  return gulp.src(['assets/js/*.js'])
-  .pipe(plumber())
-  .pipe(gulp.dest('html/js/'))
-  .pipe(browserSync.stream());
+gulp.task('copyHtml', function() {
+    return gulp.src(['assets/**/*.html'])
+        .pipe(plumber())
+        .pipe(gulp.dest('site/'))
+        .pipe(browserSync.stream());
 });
 
-gulp.task('sass',function() {
-  return gulp.src(['assets/scss/*.scss'])
-  .pipe(plumber())
-  .pipe(sass({outputStyle: 'expanded'}))
-  .pipe(gulp.dest('html/css/'))
-  .pipe(browserSync.stream());
+gulp.task('copyJs', function() {
+    return gulp.src(['assets/js/*.js'])
+        .pipe(plumber())
+        .pipe(gulp.dest('site/js/'))
+        .pipe(browserSync.stream());
 });
 
-gulp.task('default',['delHtml','delJs','delSass','copyHtml','copyJs','sass'], function() {
-  browserSync.init({
-    server: {
-      baseDir: 'html'
-    }
+gulp.task('sass', function() {
+    return gulp.src(['assets/sass/*.scss'])
+        .pipe(plumber())
+        .pipe(sass({ outputStyle: 'expanded' }))
+        .pipe(gulp.dest('site/css/'))
+        .pipe(browserSync.stream());
+});
 
-  });
-  gulp.watch(['assets/**/*.html'],['delHtml','copyHtml']);
-  gulp.watch(['assets/js/*.js'],['delJs','copyJs']);
-  gulp.watch(['assets/scss/*.scss'],['delSass','sass']);
+gulp.task('default', ['delHtml', 'delJs', 'delSass', 'copyHtml', 'copyJs', 'sass'], function() {
+    browserSync.init({
+        server: {
+            baseDir: 'site'
+        }
+    });
+    gulp.watch(['assets/**/*.html'], ['delHtml', 'copyHtml']);
+    gulp.watch(['assets/js/*.js'], ['delJs', 'copyJs']);
+    gulp.watch(['assets/sass/*.scss'], ['delSass', 'sass']);
+    browserSync.reload("styles.css");
 })
 
 // gulp.task('upload', function() {
 //     return gulp.src([
-//             "C:/Users/zd3E02/Desktop/zd3E02/myProject/vue_test/html/**/*"
+//             "C:/Users/zd3E02/Desktop/zd3E02/myProject/vue_test/site/**/*"
 //         ])
 //         .pipe(sftp({
 //             host: "ftp.sim.zdrv.com",

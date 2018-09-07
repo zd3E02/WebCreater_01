@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+/* 基本レイアウト ここから↓ */
+
+@import "common.css";
+//
+// @TODO: Add docs to bodybase!
+//
+@mixin bodybase {
+    width: 840px;
+    margin-right: auto;
+    margin-left: auto;
+};
+
+//
+// @TODO: Add docs to _backimage!
+//
+@mixin _backimage {
+  background-position: 0 -45px;
+}
+
+body {
+    background-color: #f3f2e9;
+    color: #5f5039;
+    header {
+        @include bodybase;
+        h1 {
+            margin: 0 0 26px 0;
+            padding-top: 28px;
+            text-align: center;
+        }
+
+    }
+
+    nav {
+        @include bodybase;
+        ul {
+            list-style-type: none;
+            margin: 0 0 20px 0;
+            padding-left: 0;
+            overflow: hidden;
+            li {
+                width: 210px;
+                float: left;
+                a {
+                    display: block;
+                    height: 0;
+                    padding-top: 44px;
+                    overflow: hidden;
+                }
+                &#nav_concept {
+                    a {
+                        background-image: url("../images/nav1.png");
+                    }
+                }
+                &#nav_plan {
+                    a {
+                        background-image: url("../images/nav2.png");
+                    }
+                }
+                &#nav_fair {
+                    a {
+                        background-image: url("../images/nav3.png");
+                    }
+                }
+                &#nav_contact {
+                    a {
+                        background-image: url("../images/nav4.png");
+                    }
+                }
+            }
+        }
+    };
+    div#breadcrumb {
+        @include bodybase;
+    }
+    div#contents {
+        @include bodybase;
+        div#main {
+            width: 570px;
+            float: left;
+            h1{
+              margin: 0 0 30px 0;
+              padding: 35px 0 35px 65px;
+              background: url(../images/bg_h1_head.png) left top no-repeat
+                        ,url(../images/bg_h1_bottom.png) left bottom no-repeat;
+              font-size: 156.25%;
+            }
+        }
+        div#sub{
+          width: 230px;
+          float: right;
+        }
+    }
+    footer {
+      padding-top: 70px;
+        @include bodybase;
+    }
+}
+#concept #nav_concept a, #plan #nav_plan a, #fair #nav_fair a, #contact #nav_contact a, nav ul li a:hover{
+    background-position: 0 -45px;
+}
+
+/* 基本レイアウト ここまで↑ */
+
+
+/* トップページ ここから↓ */
+#news ul{
+    list-style-type: none;
+    padding-left: 0;
+    li{
+        padding: 20px 0 20px 175px;
+        border-bottom: 1px dotted #6c4f45;
+        color: #342300;
+        text-indent: -175;
+    }
+}
+
+/* トップページ ここまで↑ */
+
+
+/* 「結婚式場のコンセプト」ページ ここから↓ */
+.concept_box{
+    margin-bottom: 30px;
+    overflow: hidden;
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
+
+/* 「結婚式場のコンセプト」ページ ここまで↑ */
+
+
+/* 「プランのご案内」ページ ここから↓ */
+table thead tr th{
+    background-color: #eee8cc;
+}
+table tbody tr:nth-child(odd){
+    background-color: #fff;
+}
+/* 「プランのご案内」ページ ここまで↑ */
+
+
+/* 「ブライダルフェア」ページ ここから↓ */
+.gallery_box figure{
+    width: 180px;
+    margin: 0 0 15px 15px;
+    float: left;
+    &:first-child{
+        margin-left: 0;
+    }
+}
+
+/* 「ブライダルフェア」ページ ここまで↑ */
+
+
+/* 「お問い合わせ」ページ ここから↓ */
+input[name="name"][type="text"]{
+    width: 200px;
+}
+input[type="email"]{
+    width: 300px;
+}
+
+/* 「お問い合わせ」ページ ここまで↑ */
